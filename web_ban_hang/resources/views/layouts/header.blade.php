@@ -72,8 +72,8 @@
                                     width: 97px;
                                 }
                             </style>
-                            <img src="{{asset('assets/trangchu/wp-content/uploads/2014/11/logo%402x.png')}} " class="logo-dimensions normal-logo" id="site-logo"
-                                alt="Aurum Fashion" width="97" height="20" />
+                            <img src="{{ asset('img/logo2.jpg') }} " class="logo-dimensions normal-logo" id="site-logo"
+                                alt="Aurum Fashion" width="100" height="20" />
 
                         </a>
 

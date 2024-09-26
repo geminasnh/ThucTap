@@ -36,5 +36,10 @@ Route::get('blog', function () {
 })->name('pages.blog');
 
 
+Route::get('admin', function () {
+    return view('layouts.admin');
+})->name('layouts.admin');
+
+
 
 
