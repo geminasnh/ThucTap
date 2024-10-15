@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use id;
+use App\Models\Order;
+use App\Models\Invoice;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreOrderRequest;
+use App\Http\Requests\UpdateOrderRequest;
 
 class OrderController extends Controller
 {
@@ -12,7 +16,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::get();
+        return view('admin.orders.index', compact('orders'));
     }
 
     /**
@@ -20,21 +25,30 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+    //     $invoice = Invoice::get();
+
+    // return view('admin.orders.create', ['invoice' => $invoice]);
+    return view('admin.orders.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreOrderRequest $request)
     {
-        //
+
+        if ($request->isMethod('POST')) {
+            $param = $request->except('__token');
+
+            Order::create($param);
+            return redirect()->route('admin.order.index')->with('errors', 'Thêm thành công');
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Order $order)
     {
         //
     }
@@ -42,24 +56,39 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(String $id)
     {
-        //
+        $order = Order::findOrFail($id);
+        return view(
+            'admin.orders.update',
+            compact('order')
+        );
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateOrderRequest $request, String $id)
     {
-        //
+        if ($request->isMethod('PUT')) {
+            $param = $request->except('__token', '__method');
+            $orders = Order::findOrFail($id);
+
+
+            $orders->update($param);
+            return redirect()->route('admin.orders.index')->with('errors', 'Sửa thành công');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(String $id)
     {
-        //
+        $orders = Order::findOrFail($id);
+
+
+        $orders->delete();
+        return redirect()->route('admin.order.index')->with('errors', 'Xóa thành công');
     }
 }

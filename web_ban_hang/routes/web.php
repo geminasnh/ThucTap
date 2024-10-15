@@ -1,48 +1,47 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthenticationController;
+use App\Http\Controllers\Admin\BlogCategoryController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\ProductController as AdminProductController ; 
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Client\ProductController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Middleware\AdminMiddleware;
+
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
+// Client Views:
 Route::get('/',                                             [ProductController::class, 'index'])->name('client.home');
+// Route::get('/categories/{id}',                          [PostController::class, 'categories'])->name('client.category');
+// Route::get('/author/{id}',                              [PostController::class, 'author'])->name('client.author');
+// Route::get('/show/{id}',                                [PostController::class, 'show'])->name('client.show');
 
-Route::get('trangchu', function () {
-    return view('pages.trangchu');
-})->name('pages.trangchu');
-Route::get('sanpham', function () {
-    return view('pages.sanpham');
-})->name('pages.sanpham');
-Route::get('giohang', function () {
-    return view('pages.giohang');
-})->name('pages.giohang');
-Route::get('ctsp', function () {
-    return view('pages.ctsp');
-})->name('pages.ctsp');
-Route::get('thanhtoan', function () {
-    return view('pages.thanhtoan');
-})->name('pages.thanhtoan');
-Route::get('blog', function () {
-    return view('pages.blog');
-})->name('pages.blog');
+// Client - Login - Register:
+// Display View:
+// Route::get('/login',                                    [AuthenticationController::class, 'displayLogin'])->name('client.login');
+// Route::get('/register',                                 [AuthenticationController::class, 'displayRegister'])->name('client.register');
 
+// Login & Register:
+// Route::post('/login',                                   [AuthenticationController::class, 'login']);
+// Route::post('/register',                                [AuthenticationController::class, 'register']);
 
-// Route::get('admin', function () {
-//     return view('layouts.admin');
-// })->name('layouts.admin');
+// Logout:
+// Route::post('/logout',                                  [AuthenticationController::class, 'logout'])->name('client.logout');
+
+// Forgot Password:
+// Route::get('forgot-password',                           [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+// Route::post('forgot-password',                          [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+// Route::get('reset-password/{token}',                    [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+// Route::post('reset-password',                           [ResetPasswordController::class, 'reset'])->name('password.update');
 
 // Admin Auth:
 Route::prefix('admin')->name('admin.')->group(function() {
@@ -71,7 +70,17 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::delete('/{product}',                     [AdminProductController::class, 'destroy'])->name('destroy');
     });
 
-  
+    // Admin - Tags:
+    // Route::prefix('tags')->name('tags.')->group(function() {
+    //     Route::get('/',                                 [TagController::class, 'index'])->name('index');
+    //     Route::get('/create',                           [TagController::class, 'create'])->name('create');
+    //     Route::post('/',                                [TagController::class, 'store'])->name('store');
+    //     Route::get('/{id}/edit',                        [TagController::class, 'edit'])->name('edit');
+    //     Route::put('/{id}',                             [TagController::class, 'update'])->name('update');
+    //     Route::get('/show/{id}',                        [TagController::class, 'show'])->name('show');
+    //     Route::delete('/{id}',                          [TagController::class, 'destroy'])->name('destroy');
+    // });
+
     // Admin - Users:
     Route::prefix('users')->name('users.')->group(function() {
         Route::get('/',                                 [UserController::class, 'index'])->name('index');
@@ -83,14 +92,47 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::delete('/{user}',                        [UserController::class, 'destroy'])->name('destroy');
     });
 
+    // Admin - Blog Categories:
+    Route::prefix('blog-categories')->name('blog-categories.')->group(function() {
+        Route::get('/',                                 [BlogCategoryController::class, 'index'])->name('index');
+        Route::get('/create',                           [BlogCategoryController::class, 'create'])->name('create');
+        Route::post('/',                                [BlogCategoryController::class, 'store'])->name('store');
+        Route::get('/edit/{blogCategory}',              [BlogCategoryController::class, 'edit'])->name('edit');
+        Route::put('/{blogCategory}',                   [BlogCategoryController::class, 'update'])->name('update');
+        Route::get('/show/{blogCategory}',              [BlogCategoryController::class, 'show'])->name('show');
+        Route::delete('/{blogCategory}',                [BlogCategoryController::class, 'destroy'])->name('destroy');
+    });
+
+
+    // Admin - Blogs:
+    Route::prefix('blogs')->name('blogs.')->group(function() {
+        Route::get('/',                                 [BlogController::class, 'index'])->name('index');
+        Route::get('/create',                           [BlogController::class, 'create'])->name('create');
+        Route::post('/',                                [BlogController::class, 'store'])->name('store');
+        Route::get('/edit/{blog}',                      [BlogController::class, 'edit'])->name('edit');
+        Route::put('/{blog}',                           [BlogController::class, 'update'])->name('update');
+        Route::get('/show/{blog}',                      [BlogController::class, 'show'])->name('show');
+        Route::delete('/{blog}',                        [BlogController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::prefix('sliders')->name('sliders.')->group(function() {
+        Route::get('/',                                 [SliderController::class, 'index'])->name('index');
+        Route::get('/create',                           [SliderController::class, 'create'])->name('create');
+        Route::post('/',                                [SliderController::class, 'store'])->name('store');
+        Route::get('/edit/{slider}',                      [SliderController::class, 'edit'])->name('edit');
+        Route::put('/{slider}',                           [SliderController::class, 'update'])->name('update');
+        Route::get('/show/{slider}',                      [SliderController::class, 'show'])->name('show');
+        Route::delete('/{slider}',                        [SliderController::class, 'destroy'])->name('destroy');
+    });
+
     Route::prefix('orders')->name('orders.')->group(function() {
-        Route::get('/',                                 [UserController::class, 'index'])->name('index');
-        Route::get('/create',                           [UserController::class, 'create'])->name('create');
-        Route::post('/',                                [UserController::class, 'store'])->name('store');
-        Route::get('/{order}/edit',                      [UserController::class, 'edit'])->name('edit');
-        Route::put('/{order}',                           [UserController::class, 'update'])->name('update');
-        Route::get('/show/{order}',                      [UserController::class, 'show'])->name('show');
-        Route::delete('/{order}',                        [UserController::class, 'destroy'])->name('destroy');
+        Route::get('/',                                 [OrderController::class, 'index'])->name('index');
+        Route::get('/create',                           [OrderController::class, 'create'])->name('create');
+        Route::post('/',                                [OrderController::class, 'store'])->name('store');
+        Route::get('/{order}/edit',                     [OrderController::class, 'edit'])->name('edit');
+        Route::put('/{order}',                          [OrderController::class, 'update'])->name('update');
+        Route::get('/show/{order}',                     [OrderController::class, 'show'])->name('show');
+        Route::delete('/{order}',                       [OrderController::class, 'destroy'])->name('destroy');
     });
 
     Route::prefix('shipping')->name('shipping.')->group(function() {
@@ -113,6 +155,3 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::delete('/{payment}',                        [UserController::class, 'destroy'])->name('destroy');
     });
 });
-
-
-

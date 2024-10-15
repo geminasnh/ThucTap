@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin;   
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Role;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -17,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::get();
+     
+    $users = User::get();
         return view('admin.users.index',compact('users'));
     }
 
@@ -36,6 +36,8 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
+      
+
         if($request->isMethod('POST')){
             $param = $request->except('__token');
             if($request->hasFile('image')){
@@ -54,13 +56,14 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        
         return view('admin.users.show',compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(String $id)
     {
         $user = User::with('role')->findOrFail($id);
         $roles = Role::get();
@@ -77,7 +80,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request, string $id)
+    public function update(UpdateUserRequest $request, String $id)
     {
         if($request->isMethod('PUT')){
             $param = $request->except('__token','__method');
@@ -99,7 +102,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(String $id)
     {
         $users = User::findOrFail($id);
       
