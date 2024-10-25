@@ -20,6 +20,31 @@ use Illuminate\Support\Facades\Route;
 
 // Client Views:
 Route::get('/',                                             [ProductController::class, 'index'])->name('client.home');
+Route::get('/',                                             [ProductController::class, 'index'])->name('client.home');
+
+Route::get('/',                                             [ProductController::class, 'index'])->name('client.home');
+
+Route::get('trangchu', function () {
+    return view('pages.trangchu');
+})->name('pages.trangchu');
+Route::get('sanpham', function () {
+    return view('pages.sanpham');
+})->name('pages.sanpham');
+Route::get('giohang', function () {
+    return view('pages.giohang');
+})->name('pages.giohang');
+Route::get('ctsp', function () {
+    return view('pages.ctsp');
+})->name('pages.ctsp');
+Route::get('thanhtoan', function () {
+    return view('pages.thanhtoan');
+})->name('pages.thanhtoan');
+Route::get('blog', function () {
+    return view('pages.blog');
+})->name('pages.blog');
+
+
+
 // Route::get('/categories/{id}',                          [PostController::class, 'categories'])->name('client.category');
 // Route::get('/author/{id}',                              [PostController::class, 'author'])->name('client.author');
 // Route::get('/show/{id}',                                [PostController::class, 'show'])->name('client.show');

@@ -28,7 +28,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header d-flex align-items-center">
-                                <h5 class="card-title mb-0">Danh Sách Người Dùng</h5>
+                                <h5 class="card-title mb-0">Danh Sách Blog</h5>
                                 <a href="{{ route('admin.users.create') }}" class="btn btn-success ms-auto">Thêm Mới</a>
                             </div>
 
@@ -109,22 +109,22 @@
                                                             name="checkAll" value="option1">
                                                     </div>
                                                 </th>
-                                                <td>{{$stt+1}}</td>
-                                                <td>{{$blog->user_id}}</td>
-                                                <td>{{$blog->category_id}}</td>
+                                                <td>{{ $stt + 1 }}</td>
+                                                <td>{{ $blog->user_id }}</td>
+                                                <td>{{ $blog->category_id }}</td>
                                                 <td>
                                                     <img src="{{ asset('storage/' . $blog->image) }}"
                                                         style="width: 75px; height: 75px; object-fit: cover"
                                                         alt="Ảnh Người Dùng">
                                                 </td>
-                                                <td>{{$blog->title}}</td>
-                                                <td>{{$blog->slug}}</td>
-                                                <td>{{$blog->description}}</td>
-                                                <td>{{$blog->status}}</td>
+                                                <td>{{ $blog->title }}</td>
+                                                <td>{{ $blog->slug }}</td>
+                                                <td>{{ $blog->description }}</td>
+                                                <td>{{ $blog->status }}</td>
                                                 <td>{{ $blog->created_at }}</td>
                                                 <td>{{ $blog->updated_at }}</td>
                                                 <td>
-                                                 
+
                                                     <a href="{{ route('admin.blogs.edit', $blog) }}"
                                                         class="btn btn-warning">Sửa</a>
 
@@ -165,5 +165,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 
     <script src="/velzon/assets/js/pages/datatables.init.js"></script>
-    </body>
 @endsection

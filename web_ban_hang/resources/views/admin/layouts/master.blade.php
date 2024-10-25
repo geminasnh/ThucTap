@@ -4,4 +4,6 @@
 
 @yield('content')
 
+@yield('script-libs')
+
 @include('admin.layouts.footer')

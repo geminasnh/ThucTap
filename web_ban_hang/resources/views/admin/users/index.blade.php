@@ -53,7 +53,7 @@
                                             <th>Tạo Ngày</th>
                                             <th>Lần Cuối Cập Nhật</th>
                                             <th>Hành Động</th>
-                                            <th>Trạng Thái</th>
+                                            {{-- <th>Trạng Thái</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -99,7 +99,7 @@
                                                 </div>
                                             </td>
                                         </tr> --}}
-                                        @foreach ($users as $stt => $user)
+                                        @foreach ($users as $user)
                                             <tr>
                                                 <th scope="row">
                                                     <div class="form-check">
@@ -107,7 +107,7 @@
                                                             name="checkAll" value="option1">
                                                     </div>
                                                 </th>
-                                                <td>{{ $stt + 1 }}</td>
+                                                <td>{{ $user->id }}</td>
                                                 <td>{{ $user->name }}</td>
 
                                                 <td>
@@ -135,7 +135,7 @@
                                                         <button type="submit" class="btn btn-danger">Xóa</button>
                                                     </form>
                                                 </td>
-                                                <td><span class="badge bg-danger">High</span></td>
+                                                {{-- <td><span class="badge bg-danger">High</span></td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>
