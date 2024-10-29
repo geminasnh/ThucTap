@@ -20,9 +20,9 @@ class ProductController extends Controller
     const PATH_UPLOAD = 'products';
     public function index()
     {
-        $data = Product::query()->with('category')->latest('id')->get();
+        $products  = Product::query()->with('category')->latest('id')->get();
 
-        return view("admin.products.index", compact('data'));
+        return view("admin.products.index", compact('products'));
     }
 
 
