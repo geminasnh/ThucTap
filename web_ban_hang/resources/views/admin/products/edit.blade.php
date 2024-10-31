@@ -45,7 +45,12 @@
                                             @enderror
                                         </div>
 
-                                   
+                                        <div class="form-group">
+                                            <label>Slug</label>
+                                            <input type="text" name="slug" class="form-control"
+                                                value="{{ old('slug', isset($product) ? $product->slug : $slug) }}"
+                                                readonly>
+                                        </div>
 
                                         <div class="mt-3">
                                             <label for="thumb_image" class="form-label">Image</label>

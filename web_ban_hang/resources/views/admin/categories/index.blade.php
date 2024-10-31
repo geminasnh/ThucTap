@@ -72,6 +72,7 @@
                                                 <td>
                                                     <a href="{{ route('admin.categories.edit', $category->id) }}"
                                                         class="btn btn-warning">Sửa</a>
+                                                        <a href="{{ route('admin.categories.show', $category->slug) }}" class="btn btn-info">Xem Chi Tiết</a>
                                                     <form action="{{ route('admin.categories.destroy', $category) }}"
                                                         method="POST" style="display:inline;"
                                                         onsubmit="return confirm('Bạn có chắc chắn muốn xóa không?');">
@@ -80,6 +81,8 @@
                                                         <button type="submit" class="btn btn-danger">Xóa</button>
                                                     </form>
                                                 </td>
+                                      
+                                                
                                             </tr>
                                         @endforeach
                                     </tbody>

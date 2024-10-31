@@ -20,7 +20,7 @@ class ProductController extends Controller
     const PATH_UPLOAD = 'products';
     public function index()
     {
-        $products  = Product::query()->with('category')->latest('id')->get();
+        $products = Product::query()->with('category')->latest('id')->get();
 
         return view("admin.products.index", compact('products'));
     }
@@ -46,13 +46,14 @@ class ProductController extends Controller
         $data['slug'] = $this->createSlug($request->name);
 
         // Tự động cập nhật trạng thái dựa vào qty
-        $data['status'] = $request->qty > 0 ? 1 : 0;
+        $datap['status'] = $request->qty > 0 ? 1 : 0;
 
         // Đảm bảo trường 'view' có giá trị mặc định là 0
         $data['view'] = 0;
 
         Product::query()->create($data);
-        return redirect()->route('admin.products.index')->with('errors','Thêm thành công');
+        return back()
+            ->with('success', 'Product added successfully.');
     }
 
 
@@ -97,7 +98,8 @@ class ProductController extends Controller
             Storage::delete($currentImage);
         }
 
-        return redirect()->route('admin.products.index')->with('errors','Sửa thành công');
+        return back()
+            ->with('success', 'Product updated successfully.');
     }
 
 

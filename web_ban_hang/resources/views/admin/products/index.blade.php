@@ -58,7 +58,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($products as $item)
+                                        @foreach ($data as $item)
                                             <tr>
                                                 <th scope="row">
                                                     <div class="form-check">

@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\Admin\AuthenticationController;
+use App\Http\Controllers\Client\Auth\AuthenticationController;
 use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DeliveryAreaController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\SliderController;
@@ -19,8 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // Client Views:
-Route::get('/',                                             [ProductController::class, 'index'])->name('client.home');
-Route::get('/',                                             [ProductController::class, 'index'])->name('client.home');
+
 
 Route::get('/',                                             [ProductController::class, 'index'])->name('client.home');
 
@@ -49,21 +49,18 @@ Route::get('blog', function () {
 // Route::get('/author/{id}',                              [PostController::class, 'author'])->name('client.author');
 // Route::get('/show/{id}',                                [PostController::class, 'show'])->name('client.show');
 
-// Client - Login - Register:
-// Display View:
-// Route::get('/login',                                    [AuthenticationController::class, 'displayLogin'])->name('client.login');
-// Route::get('/register',                                 [AuthenticationController::class, 'displayRegister'])->name('client.register');
+Route::get('/login', [AuthenticationController::class, 'displayLogin'])->name('client.login');
+Route::get('/register', [AuthenticationController::class, 'displayRegister'])->name('client.register');
 
 // Login & Register:
-// Route::post('/login',                                   [AuthenticationController::class, 'login']);
-// Route::post('/register',                                [AuthenticationController::class, 'register']);
+Route::post('/login', [AuthenticationController::class, 'login']);
+Route::post('/register', [AuthenticationController::class, 'register']);
 
-// Logout:
-// Route::post('/logout',                                  [AuthenticationController::class, 'logout'])->name('client.logout');
+// Route cho form đặt lại mật khẩu trực tiếp, không qua email
+Route::get('/forgot-password', [AuthenticationController::class, 'showForgotPasswordForm'])->name('password.request');
 
-// Forgot Password:
-// Route::get('forgot-password',                           [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-// Route::post('forgot-password',                          [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+// Route để xử lý việc đặt lại mật khẩu
+Route::post('/reset-password', [AuthenticationController::class, 'resetPassword'])->name('password.update');
 
 // Route::get('reset-password/{token}',                    [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 // Route::post('reset-password',                           [ResetPasswordController::class, 'reset'])->name('password.update');
@@ -82,6 +79,9 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/{category}/edit',                  [CategoryController::class, 'edit'])->name('edit');
         Route::put('/{category}',                       [CategoryController::class, 'update'])->name('update');
         Route::delete('/{category}',                    [CategoryController::class, 'destroy'])->name('destroy');
+        Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('show');
+        
+
     });
 
     // Admin - products:
@@ -151,7 +151,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::delete('/{slider}',                        [SliderController::class, 'destroy'])->name('destroy');
     });
 
-    Route::prefix('orders')->name('orders.')->group(function() {
+    Route::prefix('orders')->name('orders.')->group(function () {
         Route::get('/',                                 [OrderController::class, 'index'])->name('index');
         Route::get('/create',                           [OrderController::class, 'create'])->name('create');
         Route::post('/',                                [OrderController::class, 'store'])->name('store');
@@ -159,6 +159,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::put('/{order}',                          [OrderController::class, 'update'])->name('update');
         Route::get('/show/{order}',                     [OrderController::class, 'show'])->name('show');
         Route::delete('/{order}',                       [OrderController::class, 'destroy'])->name('destroy');
+        Route::get('/deleted',                          [OrderController::class, 'deleted'])->name('deleted');
     });
 
     Route::prefix('shipping')->name('shipping.')->group(function() {
@@ -179,5 +180,14 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::put('/{payment}',                           [UserController::class, 'update'])->name('update');
         Route::get('/show/{payment}',                      [UserController::class, 'show'])->name('show');
         Route::delete('/{payment}',                        [UserController::class, 'destroy'])->name('destroy');
+    });
+    Route::prefix('delivery_areas')->name('delivery_areas.')->group(function () {
+        Route::get('/',                                 [DeliveryAreaController::class, 'index'])->name('index');
+        Route::get('/create',                           [DeliveryAreaController::class, 'create'])->name('create');
+        Route::post('/',                                [DeliveryAreaController::class, 'store'])->name('store');
+        Route::get('/edit/{deliveryArea}',              [DeliveryAreaController::class, 'edit'])->name('edit');
+        Route::put('/{deliveryArea}',                   [DeliveryAreaController::class, 'update'])->name('update');
+        Route::get('/show/{deliveryArea}',              [DeliveryAreaController::class, 'show'])->name('show');
+        Route::delete('/{deliveryArea}',                [DeliveryAreaController::class, 'destroy'])->name('destroy');
     });
 });

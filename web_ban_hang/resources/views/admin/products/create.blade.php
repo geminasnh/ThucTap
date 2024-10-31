@@ -43,12 +43,12 @@
                                                     @enderror
                                                 </div>
 
-                                                {{-- <div class="form-group">
+                                                <div class="form-group">
                                                     <label>Slug</label>
                                                     <input type="text" name="slug" class="form-control"
                                                         value="{{ old('slug', isset($product) ? $product->slug : $slug) }}"
                                                         readonly>
-                                                </div> --}}
+                                                </div>
 
                                                 <div class="mt-3">
                                                     <label for="thumb_image" class="form-label">Image</label>
@@ -60,7 +60,7 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label>Ma sp</label>
+                                                    <label>Sku</label>
                                                     <input type="text" name="sku" class="form-control"
                                                         value="{{ old('sku', $sku) }}" readonly>
                                                     @error('sku')
@@ -186,8 +186,9 @@
                     .replace(/[^\w\-]+/g, '') // Xóa ký tự không phải chữ, số hoặc dấu -
                     .replace(/\-\-+/g, '-') // Xóa dấu gạch nối kép
                     .replace(/^-+/, '') // Xóa dấu gạch nối đầu
-                    .replace(/-+$/, ''); // Xóa dấu gạch nối cuối
+                    .replace(/-+$/, ''); // Xóa dấu gạch nối
             });
         });
     </script>
 @endsection
+

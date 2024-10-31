@@ -12,14 +12,14 @@
             </span>
         </a>
         <!-- Light Logo-->
-        {{-- <a href="{{ route('admin.dashboard') }}" class="logo logo-light">
+        <a href="{{ route('admin.dashboard') }}" class="logo logo-light">
             <span class="logo-sm">
                 <img src="/velzon/assets/images/logo-sm.png" alt="" height="22">
             </span>
             <span class="logo-lg">
-                <img src="/velzon/assets/images/logo-light.png" alt="" height="17">
+                <img src="" alt="" height="17">
             </span>
-        </a> --}}
+        </a>
         <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
             id="vertical-hover">
             <i class="ri-record-circle-line"></i>
@@ -111,8 +111,8 @@
                     <div class="collapse menu-dropdown" id="sidebarTags">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('admin.tags.index') }}" class="nav-link"
-                                    data-key="t-one-page">Danh Sách Thẻ</a>
+                                <a href="{{ route('admin.tags.index') }}" class="nav-link" data-key="t-one-page">Danh
+                                    Sách Thẻ</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('admin.tags.create') }}" class="nav-link"
@@ -130,8 +130,7 @@
                     <div class="collapse menu-dropdown" id="sidebarOrders">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('admin.orders.index') }}" class="nav-link"
-                                    data-key="t-one-page">Danh
+                                <a href="{{ route('admin.orders.index') }}" class="nav-link" data-key="t-one-page">Danh
                                     Sách Đơn Hàng</a>
                             </li>
                             <li class="nav-item">
@@ -154,8 +153,8 @@
                     <div class="collapse menu-dropdown" id="sidebarBlogs">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('admin.blogs.index') }}" class="nav-link"
-                                    data-key="t-one-page">Danh Sách Blogs</a>
+                                <a href="{{ route('admin.blogs.index') }}" class="nav-link" data-key="t-one-page">Danh
+                                    Sách Blogs</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('admin.blogs.create') }}" class="nav-link"
@@ -173,8 +172,8 @@
                     <div class="collapse menu-dropdown" id="sidebarUsers">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('admin.users.index') }}" class="nav-link"
-                                    data-key="t-one-page">Danh Sách Người Dùng</a>
+                                <a href="{{ route('admin.users.index') }}" class="nav-link" data-key="t-one-page">Danh
+                                    Sách Người Dùng</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('admin.users.create') }}" class="nav-link"
@@ -192,8 +191,8 @@
                     <div class="collapse menu-dropdown" id="sidebarSliders">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('admin.sliders.index') }}" class="nav-link"
-                                    data-key="t-one-page">Danh Sách Sliders</a>
+                                <a href="{{ route('admin.sliders.index') }}" class="nav-link" data-key="t-one-page">Danh
+                                    Sách Sliders</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('admin.sliders.create') }}" class="nav-link"
@@ -226,6 +225,24 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebardelivery_areas" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebardelivery_areas">
+                        <i class="fas fa-truck"></i> <span data-key="t-landing">Địa chỉ giao hàng</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebardelivery_areas">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.delivery_areas.index') }}" class="nav-link"
+                                    data-key="t-one-page">Địa chỉ giao hàng</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.delivery_areas.create') }}" class="nav-link"
+                                    data-key="t-nft-landing">Thêm Địa chỉ giao hàng</a>
+                            </li>
+                    </div>
+
+
+                <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarPayment" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarPayment">
                         <i class="fa-regular fa-credit-card"></i> <span data-key="t-landing">Thanh Toán</span>
@@ -233,8 +250,8 @@
                     <div class="collapse menu-dropdown" id="sidebarPayment">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('admin.payment.index') }}" class="nav-link"
-                                    data-key="t-one-page">Danh Sách Thanh Toán</a>
+                                <a href="{{ route('admin.payment.index') }}" class="nav-link" data-key="t-one-page">Danh
+                                    Sách Thanh Toán</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('admin.payment.create') }}" class="nav-link"

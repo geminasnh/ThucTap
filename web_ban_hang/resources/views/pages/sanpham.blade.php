@@ -156,7 +156,7 @@
                               <a href="{{ route('pages.ctsp', ['product' => $product->id]) }}" target="_self">{{ $product->name }}</a>
                           </h3>
                           <span class="product-terms">
-                              <a href="{{ route('category.show', ['slug' => $product->category->slug]) }}" rel="tag">{{ $product->category->name }}</a>
+                              <a href="{{ route('admin.categories.show', ['slug' => $product->category->slug]) }}" rel="tag">{{ $product->category->name }}</a>
                           </span>
                           <span class="price">
                               <span class="woocommerce-Price-amount amount">
