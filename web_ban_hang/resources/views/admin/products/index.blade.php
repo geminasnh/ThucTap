@@ -58,7 +58,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($data as $item)
+                                        @foreach ($products as $item)
                                             <tr>
                                                 <th scope="row">
                                                     <div class="form-check">
@@ -67,14 +67,11 @@
                                                     </div>
                                                 </th>
                                                 <td>{{ $item->id }}</td>
+                                             
                                                 <td>
-                                                    @php
-                                                        $url = $item->thumb_image;
-                                                        if (!\Str::contains($url, 'http')) {
-                                                            $url = \Storage::url($url);
-                                                        }
-                                                    @endphp
-                                                    <img src="{{ $url }}" alt="" width="100px">
+                                                    <img src="{{ asset('storage/' . $item->thumb_image) }}"
+                                                        style="width: 75px; height: 75px; object-fit: cover"
+                                                        alt="Ảnh Người Dùng">
                                                 </td>
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ $item->category->name }}</td>

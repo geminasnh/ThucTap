@@ -11,9 +11,12 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\ProductController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Client\VnpayController;
+use App\Http\Controllers\WishlistController;
 use App\Http\Middleware\AdminMiddleware;
 
 use Illuminate\Support\Facades\Route;
@@ -35,7 +38,12 @@ Route::get('giohang', function () {
 })->name('pages.giohang');
 Route::get('ctsp', function () {
     return view('pages.ctsp');
+    
 })->name('pages.ctsp');
+Route::get('show', function () {
+    return view('pages.show');
+    
+})->name('pages.show');
 Route::get('thanhtoan', function () {
     return view('pages.thanhtoan');
 })->name('pages.thanhtoan');
@@ -119,7 +127,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
     });
 
     // Admin - Blog Categories:
-    Route::prefix('blog-categories')->name('blog-categories.')->group(function() {
+    Route::prefix('blog-categories')->name('blog-categories.')->group(function () {
         Route::get('/',                                 [BlogCategoryController::class, 'index'])->name('index');
         Route::get('/create',                           [BlogCategoryController::class, 'create'])->name('create');
         Route::post('/',                                [BlogCategoryController::class, 'store'])->name('store');
@@ -127,6 +135,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::put('/{blogCategory}',                   [BlogCategoryController::class, 'update'])->name('update');
         Route::get('/show/{blogCategory}',              [BlogCategoryController::class, 'show'])->name('show');
         Route::delete('/{blogCategory}',                [BlogCategoryController::class, 'destroy'])->name('destroy');
+        
     });
 
 
@@ -190,4 +199,16 @@ Route::prefix('admin')->name('admin.')->group(function() {
         Route::get('/show/{deliveryArea}',              [DeliveryAreaController::class, 'show'])->name('show');
         Route::delete('/{deliveryArea}',                [DeliveryAreaController::class, 'destroy'])->name('destroy');
     });
-});
+}); 
+Route::get('/client/carts', [CartController::class, 'index'])->name('client.carts.giohang');
+Route::put('/carts/{id}', [CartController::class, 'update'])->name('carts.update');
+Route::delete('/carts/{id}', [CartController::class, 'destroy'])->name('carts.destroy');
+Route::delete('/carts/destroy-all', [CartController::class, 'destroyAll'])->name('carts.destroyAll');
+Route::post('/cart/add', [CartController::class, 'add'])->name('client.cart.add');
+
+
+// VNPay routes
+Route::get('payment/vnpay', [VnpayController::class, 'createPayment'])->name('payment.vnpay.create');
+Route::get('payment/vnpay/callback', [VnpayController::class, 'callback'])->name('payment.vnpay.callback');
+// web.php
+Route::post('/wishlist/add/{id}', [WishlistController::class, 'add'])->name('wishlist.add');

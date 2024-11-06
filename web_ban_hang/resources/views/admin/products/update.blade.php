@@ -83,23 +83,21 @@
                                                 <textarea class="form-control" rows="4" id="comment" placeholder="Nội Dung" name="content">{{ $post->content }}</textarea>
                                             </div>
 
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">Tải
-                                                        Lên</span>
-                                                </div>
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" name="image"
-                                                        accept="image/*">
-
-                                                    <label class="custom-file-label">Chọn Ảnh</label>
-                                                </div>
+                                            <div class="form-group mb-3">
+                                                <input type="file" 
+                                                       class="custom-file-input @error('image') is-invalid @enderror" 
+                                                       name="image" 
+                                                       accept="image/*">
+                                                <label class="custom-file-label">Chọn Ảnh</label>
                                             </div>
-
+                                            @error('image')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
                                             @if ($post->image)
-                                                <img class="mb-3" src="{{ Storage::url($post->image) }}"
-                                                    style="width: 100px;" alt="{{ Storage::url($post->image) }}">
+                                                <img class="mb-3" src="{{ asset('storage/' . $post->image) }}" 
+                                                     style="width: 100px;" alt="Ảnh Cũ">
                                             @endif
+                                            
                                         </div>
                                     </div>
 

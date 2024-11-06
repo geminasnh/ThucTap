@@ -147,9 +147,10 @@
                       <div class="item-image">
                           <a href="{{ route('pages.ctsp', ['product' => $product->id]) }}" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
                               <span class="image-placeholder" style="padding-bottom:127.333333%">
-                                  <img width="150" height="191" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail lazyload" alt="{{ $product->name }}" decoding="async" src="{{ asset($product->thumb_image) }}" />
+                                  <img width="150" height="191" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail lazyload" alt="{{ $product->name }}" decoding="async" src="{{ asset('storage/' . $product->thumb_image) }}" />
                               </span>
                           </a>
+                          
                       </div>
                       <div class="item-info">
                           <h3>
