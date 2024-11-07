@@ -49,11 +49,11 @@ class ProductController extends Controller
             return redirect()->route('admin.products.index')->with('success', 'Product added successfully.');
         }
     }
-    public function show(Product $product)
-{
-    // $product = Product::findOrFail($id);
-    return view(self::PATH_VIEW . 'show', compact('product'));
-}
+    public function show($id)
+    {
+        $product = Product::with('category','images')->findOrFail($id)->first();
+        return view('admin.products.show', compact('product'));
+    }
 
     public function edit(Product $product)
     {
@@ -74,11 +74,11 @@ class ProductController extends Controller
 
                 $filename = $request->file('thumb_image')->store(self::PATH_UPLOAD, 'public');
             } else {
-                $filename = $product->thumb_image; // Keep the old image if no new one is uploaded
+                $filename = $product->thumb_image; 
             }
 
-            $param['thumb_image'] = $filename; // Save the image path
-            $param['slug'] = $this->createSlug($request->name); // Generate slug
+            $param['thumb_image'] = $filename; 
+            $param['slug'] = $this->createSlug($request->name);
             $param['status'] = $request->qty > 0 ? 1 : 0; // Set status
 
             $product->update($param);
@@ -119,4 +119,17 @@ class ProductController extends Controller
 
         return $slug;
     }
+    public function addImageToProduct($productId, $imagePath)
+{
+    $product = Product::find($productId); // Lấy sản phẩm theo ID
+
+    if ($product) {
+        // Thêm ảnh vào sản phẩm
+        $product->images()->create(['url' => $imagePath]);
+
+        return response()->json(['message' => 'Image added successfully'], 200);
+    }
+
+    return response()->json(['message' => 'Product not found'], 404);
+}
 }

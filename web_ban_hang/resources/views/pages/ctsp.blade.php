@@ -42,7 +42,7 @@
                     <div id="product-40"
                         class="product type-product post-40 status-publish first instock product_cat-men has-post-thumbnail taxable shipping-taxable purchasable product-type-variable">
 
-                        <div class="product-images-container thumbnails-vertical zoom-enabled auto-rotate"
+                        {{-- <div class="product-images-container thumbnails-vertical zoom-enabled auto-rotate"
                             data-autorotate="5">
                             <div class="product-images product-images--single-variation-image-swap">
 
@@ -85,7 +85,7 @@
                                     <div class="woocommerce-product-gallery__image"><a
                                             href="../../wp-content/uploads/2014/11/image4xxl19.jpg"><span
                                                 class="image-placeholder" style="padding-bottom:127.666667%"><img
-                                                    width="300" height="383" class="wp-post-image lazyload"
+                                                    width="300" height="383" class="wp-post-image ladivDescriptionzyload"
                                                     alt="" title="image4xxl" data-caption=""
                                                     data-large_image_width="870" data-large_image_height="1110"
                                                     decoding="async" loading="lazy"
@@ -145,8 +145,92 @@
                                 </div>
 
                             </div>
+                        </div> --}}
+                        <div class="product-images-container thumbnails-vertical zoom-enabled auto-rotate" data-autorotate="5">
+                            <div class="product-images product-images--single-variation-image-swap">
+                        
+                                <div class="product-images--main">
+                                    <!-- Hiển thị hình ảnh chính của sản phẩm -->
+                                   
+                                        <div class="woocommerce-product-gallery__image">
+                                            <a href="{{  asset('storage/' . $product->thumb_image)}}">
+                                                <span class="image-placeholder" style="padding-bottom:127.666667%">
+                                                    <img width="300" height="383" class="wp-post-image lazyload"
+                                                         alt="{{ $product->name }}" title="{{ $product->name }}"
+                                                         srcset="{{  asset('storage/' . $product->thumb_image)}}" sizes="(max-width: 300px) 100vw, 300px"
+                                                         data-src="{{  asset('storage/' . $product->thumb_image)}}" />
+                                                </span>
+                                            </a>
+                                            <button class="product-gallery-lightbox-trigger" title="View full size">+</button>
+                                        </div>
+                                  
+                                </div>
+                        
+                                <div class="product-images--thumbnails columns-5">
+                                    <!-- Hiển thị thumbnail của sản phẩm -->
+                                 
+                                        <div class="woocommerce-product-gallery__image">
+                                            <a href="{{  asset('storage/' . $product->thumb_image)}}">
+                                                <span class="image-placeholder" style="padding-bottom:100.000000%">
+                                                    <img width="100" height="100" class="wp-post-image lazyload"
+                                                         alt="{{ $product->name }}" title="{{ $product->name }}"
+                                                         srcset="{{  asset('storage/' . $product->thumb_image)}}" sizes="(max-width: 100px) 100vw, 100px"
+                                                         data-src="{{  asset('storage/' . $product->thumb_image)}}" />
+                                                </span>
+                                            </a>
+                                        </div>
+                                   
+                                </div>
+                        
+                            </div>
                         </div>
+                        
+
                         <div class="summary entry-summary">
+                            
+                        
+                            <h1 class="product_title entry-title">{{ $product->name }}</h1>
+                            <small class="product-terms">
+                                <a href="{{ route('admin.categories.show', ['slug' => $product->category->slug]) }}" rel="tag">{{ $product->category->name }}</a>
+                            </small>
+                        
+                            <!-- Hiển thị thông tin sản phẩm... -->
+                        
+                            <form action="{{ route('client.carts.add') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <input type="number" name="quantity" value="1" min="1" class="quantity-input">
+                                <button type="submit" class="btn btn-primary">Thêm vào giỏ hàng</button>
+                            </form>
+                        
+                            <div class="woocommerce-product-rating">
+                                <div class="star-rating-icons" title="{{ $product->rating }} out of 5">
+                                    @for ($i = 0; $i < 5; $i++)
+                                        <i class="star-icon {{ $i < $product->rating ? 'filled' : '' }}"></i>
+                                    @endfor
+                                </div>
+                                {{-- <a href="#reviews" class="woocommerce-review-link" rel="nofollow">(<span class="count">{{ $product->reviews->count() }}</span> customer reviews)</a> --}}
+                            </div>
+                        
+                            <div class="woocommerce-product-details__short-description">
+                                <p>{{ $product->description }}</p>
+                            </div>
+                            
+                            <p class="price">
+                                <span class="woocommerce-Price-amount amount">
+                                    <bdi><span class="woocommerce-Price-currencySymbol">$</span>{{ number_format($product->price, 2) }}</bdi>
+                                </span>
+                            </p>
+{{--                         
+                            <div class="product_meta">
+                                <span>Product ID: <strong>{{ $product->id }}</strong></span>
+                                <span class="sku_wrapper">SKU: <span class="sku">{{ $product->sku ?? 'N/A' }}</span></span>
+                            </div> --}}
+                           
+                        </div>
+                        
+                        
+                        {{-- <div class="summary entry-summary">
                             <h1 class="product_title entry-title">Abandon Ship</h1><small class="product-terms"><a
                                     href="../../product-category/men/index.html" rel="tag">Men</a></small>
                             <div class="woocommerce-product-rating">
@@ -235,7 +319,7 @@
                                         Email </a>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
 
                         <div class="woocommerce-tabs wc-tabs-wrapper">

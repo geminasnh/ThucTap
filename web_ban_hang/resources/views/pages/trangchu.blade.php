@@ -120,49 +120,22 @@
                             @foreach($products as $product)
                                 <li class="shop-item hover-effect-1 columns-xs-2 product type-product post-{{ $product->id }} status-publish instock product_cat-{{ $product->category->slug }} has-post-thumbnail taxable shipping-taxable purchasable product-type-simple">
                                     <div class="item-image">
-                                        <a href="{{ route('pages.show', ['id' => $product->id]) }}" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
-                                            <span class="image-placeholder" style="padding-bottom:127.333333%">
-                                                <img width="150" height="191" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail lazyload" alt="{{ $product->name }}" src="{{ asset('storage/' . $product->thumb_image) }}" />
-                                            </span>
+                                        <a href="{{ route('product.detail', $product->slug) }}" class="woocommerce-LoopProduct-link">
+                                            <img src="{{ asset('storage/' . $product->thumb_image) }}" alt="{{ $product->name }}" />
                                         </a>
-                                        <div class="bounce-loader">
-                                            <div class="loading loading-0"></div>
-                                            <div class="loading loading-1"></div>
-                                            <div class="loading loading-2"></div>
-                                        </div>
-                                    </div>
-                                    <div class="yith-add-to-wishlist">
-                                        <div class="yith-wcwl-add-to-wishlist add-to-wishlist-{{ $product->id }} wishlist-fragment on-first-load" data-fragment-ref="{{ $product->id }}">
-                                            <div class="yith-wcwl-add-button">
-                                                <a href="#" class="add_to_wishlist single_add_to_wishlist" data-product-id="{{ $product->id }}" rel="nofollow">
-                                                    <span>Thêm vào danh sách yêu thích</span>
-                                                </a>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="item-info">
                                         <h3>
-                                            <a href="{{ route('pages.ctsp', ['product' => $product->id]) }}">{{ $product->name }}</a>
+                                            <a href="{{ route('product.detail', $product->slug) }}">{{ $product->name }}</a>
                                         </h3>
-                                        <span class="product-terms">
-                                            <a href="{{ route('admin.categories.show', ['slug' => $product->category->slug]) }}" rel="tag">{{ $product->category->name }}</a>
-                                        </span>
-                                        <span class="price">
-                                            <span class="woocommerce-Price-amount amount">
-                                                <bdi><span class="woocommerce-Price-currencySymbol">$</span>{{ number_format($product->price, 2) }}</bdi>
-                                            </span>
-                                        </span>
+                                        <span class="price">{{ number_format($product->price, 2) }} VND</span>
                                     </div>
                                 </li>
                             @endforeach
                         </ul>
                     </div>
                 </div>
-                
-                
-                
 
-              </div>
 
               <script type="text/javascript">
                 jQuery(document).ready(function ($) {

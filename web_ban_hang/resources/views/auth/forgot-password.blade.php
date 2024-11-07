@@ -1,3 +1,6 @@
+@extends('layouts.index')
+
+@section('content')
 <form method="POST" action="{{ route('password.update') }}">
     @csrf
     <div>
@@ -14,3 +17,4 @@
     </div>
     <button type="submit">Đặt lại mật khẩu</button>
 </form>
+@endsection

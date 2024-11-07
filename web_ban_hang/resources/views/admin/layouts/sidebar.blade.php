@@ -64,14 +64,7 @@
                                 <a href="{{ route('admin.categories.create') }}" class="nav-link"
                                     data-key="t-nft-landing">Thêm Danh Mục Sản Phẩm</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{ route('admin.blog-categories.index') }}" class="nav-link"
-                                    data-key="t-nft-landing">Danh Mục Blog</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('admin.blog-categories.create') }}" class="nav-link"
-                                    data-key="t-nft-landing">Thêm Danh Mục Blog</a>
-                            </li>
+                      
                         </ul>
                     </div>
                 </li>
@@ -145,24 +138,7 @@
                     </div>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarBlogs" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="sidebarBlogs">
-                        <i class="fa-solid fa-newspaper"></i> <span data-key="t-landing">Blogs</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="sidebarBlogs">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="{{ route('admin.blogs.index') }}" class="nav-link" data-key="t-one-page">Danh
-                                    Sách Blogs</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('admin.blogs.create') }}" class="nav-link"
-                                    data-key="t-nft-landing">Thêm Blogs</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+   
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarUsers" data-bs-toggle="collapse" role="button"

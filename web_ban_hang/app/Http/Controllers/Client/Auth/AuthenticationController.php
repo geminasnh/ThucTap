@@ -38,7 +38,7 @@ class AuthenticationController extends Controller
             // Chuyển hướng dựa trên vai trò
             switch ($user->role_id) {
                 case 1: // User
-                    return redirect()->intended('/user');
+                    return redirect()->intended('/trangchu');
                 case 2: // Admin
                     return redirect()->intended('/admin/dashboard');
                 case 3: // Employee

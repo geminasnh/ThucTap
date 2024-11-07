@@ -94,13 +94,16 @@
                         <nav id="ubermenu-main-69-main-menu"
                             class="ubermenu ubermenu-nojs ubermenu-main ubermenu-menu-69 ubermenu-loc-main-menu ubermenu-responsive-collapse ubermenu-horizontal ubermenu-transition-fade ubermenu-trigger-hover_intent ubermenu-skin-none  ubermenu-bar-align-full ubermenu-items-align-left ubermenu-bound ubermenu-disable-submenu-scroll ubermenu-retractors-responsive ubermenu-submenu-indicator-closes">
                             <ul id="ubermenu-nav-main-69-main-menu" class="ubermenu-nav" data-title="Mega Menu 1">
-                                <li id="menu-item-812"
-                                    class="ubermenu-item ubermenu-item-type-post_type ubermenu-item-object-page ubermenu-item-home ubermenu-current-menu-item ubermenu-page_item ubermenu-page-item-328 ubermenu-current_page_item ubermenu-current-menu-ancestor ubermenu-current-menu-parent ubermenu-current_page_parent ubermenu-current_page_ancestor ubermenu-item-has-children ubermenu-item-812 ubermenu-item-level-0 ubermenu-column ubermenu-column-auto ubermenu-has-submenu-drop ubermenu-has-submenu-flyout">
-                                    <a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only"
-                                        href="{{ route('pages.trangchu') }}" tabindex="0"><span
-                                            class="ubermenu-target-title ubermenu-target-text">Home</span></a>
-                              
-                                </li>
+                                <li id="menu-item-820"
+                                class="ubermenu-item ubermenu-item-type-post_type ubermenu-item-object-page ubermenu-item-has-children ubermenu-advanced-sub ubermenu-item-820 ubermenu-item-level-0 ubermenu-column ubermenu-column-auto ubermenu-has-submenu-drop ubermenu-has-submenu-mega">
+                                <a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only"
+                                    href="{{ route('pages.sanpham') }}" tabindex="0"><span
+                                        class="ubermenu-target-title ubermenu-target-text">Home</span></a>
+                                <div
+                                    class="ubermenu-submenu ubermenu-submenu-id-820 ubermenu-submenu-type-auto ubermenu-submenu-type-mega ubermenu-submenu-drop ubermenu-submenu-align-full_width">
+                                 
+                                </div>
+                            </li>
                                 <li id="menu-item-820"
                                     class="ubermenu-item ubermenu-item-type-post_type ubermenu-item-object-page ubermenu-item-has-children ubermenu-advanced-sub ubermenu-item-820 ubermenu-item-level-0 ubermenu-column ubermenu-column-auto ubermenu-has-submenu-drop ubermenu-has-submenu-mega">
                                     <a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only"
@@ -118,28 +121,18 @@
                                             class="ubermenu-target-title ubermenu-target-text">Pages</span></a>
                                   
                                 </li>
-                                <li id="menu-item-813"
-                                    class="ubermenu-item ubermenu-item-type-post_type ubermenu-item-object-page ubermenu-item-has-children ubermenu-item-813 ubermenu-item-level-0 ubermenu-column ubermenu-column-auto ubermenu-has-submenu-drop ubermenu-has-submenu-flyout">
-                                    <a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only"
-                                        href="{{route('pages.blog')}}" tabindex="0"><span
-                                            class="ubermenu-target-title ubermenu-target-text">Blog</span></a>
-                               
-                                </li>
-                                <li id="menu-item-821"
-                                    class="ubermenu-item ubermenu-item-type-post_type ubermenu-item-object-page ubermenu-item-has-children ubermenu-advanced-sub ubermenu-item-821 ubermenu-item-level-0 ubermenu-column ubermenu-column-auto ubermenu-has-submenu-drop ubermenu-has-submenu-mega">
-                                    <span class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only"
-                                        tabindex="0"><span class="ubermenu-target-title ubermenu-target-text">Liên hệ</span></span>
-                                    <div
-                                        class="ubermenu-submenu ubermenu-submenu-id-821 ubermenu-submenu-type-mega ubermenu-submenu-drop ubermenu-submenu-align-full_width">
-                                      
-                                     
-                                    </div>
-                                </li>
+                            
+                                <li id="menu-item-839"
+                                class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-custom ubermenu-item-has-children ubermenu-item-839 ubermenu-item-level-0 ubermenu-column ubermenu-column-auto ubermenu-has-submenu-drop ubermenu-has-submenu-flyout">
+                                <a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only"
+                                    href="contact/index.html" tabindex="0"><span
+                                        class="ubermenu-target-title ubermenu-target-text">Liên hệ</span></a>
+                              
                                 <li id="menu-item-1336"
                                     class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-custom ubermenu-item-1336 ubermenu-item-level-0 ubermenu-column ubermenu-column-auto">
                                     <a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only"
                                          href="{{route('pages.thanhtoan')}}" tabindex="0"><span
-                                            class="">Buy Now</span></a></li>
+                                            class="ubermenu-target-title ubermenu-target-text">Buy Now</span></a></li>
                             </ul>
                         </nav>
                         <!-- End UberMenu -->
@@ -183,7 +176,7 @@ z" />
                             </li>
 
                             <li>
-                                <a class="cart-counter" href="{{route('pages.giohang')}}">
+                                <a class="cart-counter" href="{{route('client.carts.giohang')}}">
                                     <span class="badge items-count">0</span>
 
                                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24px" height="24px"
@@ -196,9 +189,7 @@ s26.891-12.039,26.891-26.891S215.894,353.109,201.042,353.109z" />
                                     </svg>
                                 </a>
 
-                                <div class="woocommerce lab-mini-cart">
-                                    <div class="cart-is-loading">Loading cart contents...</div>
-                                </div>
+                              
                             </li>
                         </ul>
 

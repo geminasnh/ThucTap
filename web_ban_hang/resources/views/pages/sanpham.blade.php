@@ -145,16 +145,16 @@
               @foreach($products as $product)
                   <li class="shop-item hover-effect-1 columns-xs-2 product type-product post-{{ $product->id }} status-publish instock product_cat-{{ $product->category->slug }} has-post-thumbnail taxable shipping-taxable purchasable product-type-simple">
                       <div class="item-image">
-                          <a href="{{ route('pages.ctsp', ['product' => $product->id]) }}" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
+                          <a href="{{  route('product.detail', $product->slug)}}" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">
                               <span class="image-placeholder" style="padding-bottom:127.333333%">
                                   <img width="150" height="191" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail lazyload" alt="{{ $product->name }}" decoding="async" src="{{ asset('storage/' . $product->thumb_image) }}" />
                               </span>
                           </a>
-                          
+                         
                       </div>
                       <div class="item-info">
                           <h3>
-                              <a href="{{ route('pages.ctsp', ['product' => $product->id]) }}" target="_self">{{ $product->name }}</a>
+                              <a href="{{ route('product.detail', $product->slug)}} }}" target="_self">{{ $product->name }}</a>
                           </h3>
                           <span class="product-terms">
                               <a href="{{ route('admin.categories.show', ['slug' => $product->category->slug]) }}" rel="tag">{{ $product->category->name }}</a>

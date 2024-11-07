@@ -1,3 +1,7 @@
+
+@extends('layouts.index')
+
+@section('content')
 <div class="container">
     <h1 class="mt-4">Giỏ Hàng</h1>
 
@@ -54,3 +58,4 @@
         </tbody>
     </table>
 </div>
+@endsection

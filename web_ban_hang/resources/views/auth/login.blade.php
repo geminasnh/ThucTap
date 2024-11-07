@@ -1,3 +1,6 @@
+@extends('layouts.index')
+
+@section('content')
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,3 +36,4 @@
     <p>Chưa có tài khoản? <a href="{{ route('client.register') }}">Đăng ký</a></p>
 </body>
 </html>
+@endsection

@@ -83,7 +83,7 @@
                                                     @elseif ($field == 'category_id')
                                                         {{ $product->category->name }}
                                                     @else
-                                                        {{ $value }}
+                                                    
                                                     @endif
                                                 </td>
                                             </tr>
