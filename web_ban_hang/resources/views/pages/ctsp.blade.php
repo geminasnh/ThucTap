@@ -187,8 +187,6 @@
                         
 
                         <div class="summary entry-summary">
-                            
-                        
                             <h1 class="product_title entry-title">{{ $product->name }}</h1>
                             <small class="product-terms">
                                 <a href="{{ route('admin.categories.show', ['slug' => $product->category->slug]) }}" rel="tag">{{ $product->category->name }}</a>
@@ -196,38 +194,55 @@
                         
                             <!-- Hiển thị thông tin sản phẩm... -->
                         
-                            <form action="{{ route('client.carts.add') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                <input type="number" name="quantity" value="1" min="1" class="quantity-input">
-                                <button type="submit" class="btn btn-primary">Thêm vào giỏ hàng</button>
-                            </form>
-                        
                             <div class="woocommerce-product-rating">
                                 <div class="star-rating-icons" title="{{ $product->rating }} out of 5">
                                     @for ($i = 0; $i < 5; $i++)
                                         <i class="star-icon {{ $i < $product->rating ? 'filled' : '' }}"></i>
                                     @endfor
                                 </div>
-                                {{-- <a href="#reviews" class="woocommerce-review-link" rel="nofollow">(<span class="count">{{ $product->reviews->count() }}</span> customer reviews)</a> --}}
                             </div>
                         
                             <div class="woocommerce-product-details__short-description">
                                 <p>{{ $product->description }}</p>
                             </div>
-                            
+                        
                             <p class="price">
                                 <span class="woocommerce-Price-amount amount">
                                     <bdi><span class="woocommerce-Price-currencySymbol">$</span>{{ number_format($product->price, 2) }}</bdi>
                                 </span>
                             </p>
-{{--                         
-                            <div class="product_meta">
-                                <span>Product ID: <strong>{{ $product->id }}</strong></span>
-                                <span class="sku_wrapper">SKU: <span class="sku">{{ $product->sku ?? 'N/A' }}</span></span>
-                            </div> --}}
-                           
+                        
+                            <div class="product-images--thumbnails columns-5">
+                                @foreach($product->images as $image)
+                                    <div class="woocommerce-product-gallery__image">
+                                        <a href="{{ asset('storage/' . $image->path) }}">
+                                            <span class="image-placeholder" style="padding-bottom:100.000000%">
+                                                <img
+                                                    width="100" height="100"
+                                                    class="wp-post-image lazyload"
+                                                    alt="{{ $product->name }}"
+                                                    title="{{ $product->name }}"
+                                                    decoding="async" loading="lazy"
+                                                    src="{{ asset('storage/' . $image->path) }}"
+                                                    srcset="{{ asset('storage/' . $image->path) }} 100w, {{ asset('storage/' . $image->path) }} 150w"
+                                                    sizes="(max-width: 100px) 100vw, 100px"
+                                                />
+                                            </span>
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        
+                            <!-- Form thêm vào giỏ hàng -->
+                            <form action="{{ route('client.carts.add') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <input type="number" name="quantity" value="1" min="1">
+                                <button type="submit">Thêm vào giỏ</button>
+                            </form>
+                            
                         </div>
+                        
                         
                         
                         {{-- <div class="summary entry-summary">

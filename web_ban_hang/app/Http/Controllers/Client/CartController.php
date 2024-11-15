@@ -25,62 +25,74 @@ class CartController extends Controller
      * Thêm sản phẩm vào giỏ hàng.
      */
     public function add(Request $request)
-    {
-        // Kiểm tra người dùng đã đăng nhập hay chưa
-        $userId = auth()->id() ? auth()->id() : session()->getId();
+{
+    $userId = auth()->id() ? auth()->id() : session()->getId();
 
-        // Kiểm tra nếu sản phẩm đã có trong giỏ hàng
-        $cart = Cart::where('session_id', $userId)
-                    ->where('product_id', $request->product_id)
-                    ->first();
+    // Kiểm tra nếu sản phẩm đã có trong giỏ hàng
+    $cart = Cart::where('session_id', $userId)
+                ->where('product_id', $request->product_id)
+                ->first();
 
-        if ($cart) {
-            // Nếu sản phẩm đã có trong giỏ hàng, tăng số lượng lên
-            $cart->quantity += $request->quantity;
-            $cart->grand_total = $cart->product->price * $cart->quantity;
-            $cart->save();
-        } else {
-            // Nếu chưa có sản phẩm trong giỏ hàng, tạo mới
-            $product = Product::findOrFail($request->product_id);
+    $product = Product::findOrFail($request->product_id); // Lấy sản phẩm từ DB
 
-            $cart = new Cart();
-            $cart->session_id = $userId;  // Gán session_id (hoặc user_id nếu đăng nhập)
-            $cart->product_id = $request->product_id;
-            $cart->quantity = $request->quantity;
-            $cart->grand_total = $product->price * $request->quantity;
-            $cart->save();
-        }
-
-        return redirect()->route('client.carts.giohang')->with('success', 'Sản phẩm đã được thêm vào giỏ hàng.');
+    if ($cart) {
+        // Nếu sản phẩm đã có trong giỏ hàng, tăng số lượng lên
+        $cart->quantity += $request->quantity;
+        $cart->grand_total = $product->price * $cart->quantity; // Cập nhật tổng giá trị
+        $cart->save();
+    } else {
+        // Nếu chưa có sản phẩm trong giỏ hàng, tạo mới
+        $cart = new Cart();
+        $cart->session_id = $userId;
+        $cart->product_id = $request->product_id;
+        $cart->quantity = $request->quantity;
+        $cart->grand_total = $product->price * $request->quantity; // Tính tổng giá trị ngay khi thêm
+        $cart->save();
     }
+
+    return redirect()->route('client.carts.giohang')->with('success', 'Sản phẩm đã được thêm vào giỏ hàng.');
+}
+
 
     /**
      * Cập nhật số lượng sản phẩm trong giỏ hàng.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
+        // Kiểm tra dữ liệu nhập vào
         $request->validate([
             'quantity' => 'required|integer|min:1',
         ]);
 
+        // Tìm sản phẩm trong giỏ hàng
         $cart = Cart::findOrFail($id);
+        $product = $cart->product;
+
+        // Cập nhật số lượng và tính lại tổng giá
         $cart->quantity = $request->quantity;
-        $cart->grand_total = $cart->product->price * $cart->quantity;
+        $cart->grand_total = $product->price * $cart->quantity;  // Tính lại tổng giá
+
+        // Lưu thay đổi
         $cart->save();
 
-        return redirect()->route('client.carts.giohang')->with('success', 'Giỏ hàng đã được cập nhật.');
+        // Trả về phản hồi JSON
+        return response()->json(['success' => true]);
     }
+    
+
 
     /**
      * Xóa sản phẩm khỏi giỏ hàng.
      */
-    public function destroy(string $id)
-    {
-        $cart = Cart::findOrFail($id);
-        $cart->delete();
+   // Controller CartController
+public function destroy($id)
+{
+    // Xử lý xóa sản phẩm từ giỏ hàng
+    Cart::destroy($id);  // Hoặc tùy theo cách bạn xóa sản phẩm trong giỏ hàng
+    return redirect()->route('client.carts.giohang')->with('success', 'Sản phẩm đã được xóa.');
+}
 
-        return redirect()->route('client.carts.giohang')->with('success', 'Sản phẩm đã được xóa khỏi giỏ hàng.');
-    }
+    
 
     /**
      * Xóa tất cả sản phẩm trong giỏ hàng.
@@ -94,4 +106,24 @@ class CartController extends Controller
 
         return redirect()->route('client.carts.giohang')->with('success', 'Đã xóa tất cả sản phẩm trong giỏ hàng.');
     }
+// Controller CartController
+public function checkout(Request $request)
+{
+    $selectedProducts = $request->input('selected_products');
+    
+    // Kiểm tra nếu không có sản phẩm nào được chọn
+    if (!$selectedProducts) {
+        return redirect()->route('client.carts.giohang')->with('error', 'Vui lòng chọn ít nhất một sản phẩm để thanh toán.');
+    }
+
+    // Tiến hành xử lý thanh toán với các sản phẩm đã chọn
+    // ...
+}
+
+    
+    
+    
+    
+
+
 }

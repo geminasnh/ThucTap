@@ -121,7 +121,7 @@
                                 <li class="shop-item hover-effect-1 columns-xs-2 product type-product post-{{ $product->id }} status-publish instock product_cat-{{ $product->category->slug }} has-post-thumbnail taxable shipping-taxable purchasable product-type-simple">
                                     <div class="item-image">
                                         <a href="{{ route('product.detail', $product->slug) }}" class="woocommerce-LoopProduct-link">
-                                            <img src="{{ asset('storage/' . $product->thumb_image) }}" alt="{{ $product->name }}" />
+                                            <img src="{{ asset('storage/' . $product->thumb_image) }}" alt="{{ $product->name }}"  />
                                         </a>
                                     </div>
                                     <div class="item-info">

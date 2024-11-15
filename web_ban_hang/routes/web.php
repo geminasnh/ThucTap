@@ -17,6 +17,7 @@ use App\Http\Controllers\Client\ProductController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Client\VnpayController;
+use App\Http\Controllers\DonHangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Middleware\AdminMiddleware;
@@ -33,6 +34,11 @@ Route::get('/sanpham', [ProductController::class, 'sanpham'])->name('sanpham');
 
 
 
+
+
+Route::get('trangchu', function () {
+    return view('pages.trangchu');
+})->name('pages.trangchu');
 Route::get('sanpham', function () {
     return view('pages.sanpham');
 })->name('pages.sanpham');
@@ -49,7 +55,7 @@ Route::get('show', function () {
 })->name('pages.show');
 Route::get('thanhtoan', function () {
     return view('pages.thanhtoan');
-})->name('pages.thanhtoan');
+})->name('thanhtoan');
 Route::get('blog', function () {
     return view('pages.blog');
 })->name('pages.blog');
@@ -176,10 +182,15 @@ Route::prefix('products')->name('products.')->group(function() {
 Route::get('/client/carts', [CartController::class, 'index'])->name('client.carts.giohang');
 Route::put('/carts/{id}', [CartController::class, 'update'])->name('carts.update');
 Route::delete('/carts/{id}', [CartController::class, 'destroy'])->name('carts.destroy');
+
 Route::delete('/carts/destroy-all', [CartController::class, 'destroyAll'])->name('carts.destroyAll');
+// Route::post('/carts/checkout', [CartController::class, 'checkout'])->name('carts.checkout');
+Route::post('/thanhtoan', [CartController::class, 'checkout'])->name('carts.checkout');
 
 Route::post('/cart/add', [CartController::class, 'add'])->name('client.carts.add');
 
+Route::get('/donhangs/create', [DonHangController::class, 'create'])->name('donhangs.create');
+Route::post('/donhangs', [DonHangController::class, 'store'])->name('donhangs.store');
 
 // VNPay routes
 Route::get('payment/vnpay', [VnpayController::class, 'createPayment'])->name('payment.vnpay.create');

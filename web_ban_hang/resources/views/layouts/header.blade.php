@@ -97,7 +97,7 @@
                                 <li id="menu-item-820"
                                 class="ubermenu-item ubermenu-item-type-post_type ubermenu-item-object-page ubermenu-item-has-children ubermenu-advanced-sub ubermenu-item-820 ubermenu-item-level-0 ubermenu-column ubermenu-column-auto ubermenu-has-submenu-drop ubermenu-has-submenu-mega">
                                 <a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only"
-                                    href="{{ route('pages.sanpham') }}" tabindex="0"><span
+                                    href="{{ route('pages.trangchu') }}" tabindex="0"><span
                                         class="ubermenu-target-title ubermenu-target-text">Home</span></a>
                                 <div
                                     class="ubermenu-submenu ubermenu-submenu-id-820 ubermenu-submenu-type-auto ubermenu-submenu-type-mega ubermenu-submenu-drop ubermenu-submenu-align-full_width">
@@ -131,7 +131,7 @@
                                 <li id="menu-item-1336"
                                     class="ubermenu-item ubermenu-item-type-custom ubermenu-item-object-custom ubermenu-item-1336 ubermenu-item-level-0 ubermenu-column ubermenu-column-auto">
                                     <a class="ubermenu-target ubermenu-item-layout-default ubermenu-item-layout-text_only"
-                                         href="{{route('pages.thanhtoan')}}" tabindex="0"><span
+                                         href="{{route('thanhtoan')}}" tabindex="0"><span
                                             class="ubermenu-target-title ubermenu-target-text">Buy Now</span></a></li>
                             </ul>
                         </nav>
@@ -176,7 +176,7 @@ z" />
                             </li>
 
                             <li>
-                                <a class="cart-counter" href="{{route('client.carts.giohang')}}">
+                                <a class="cart-counter" href="">
                                     <span class="badge items-count">0</span>
 
                                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24px" height="24px"
