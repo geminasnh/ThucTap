@@ -45,10 +45,7 @@ Route::get('sanpham', function () {
 Route::get('giohang', function () {
     return view('pages.giohang');
 })->name('pages.giohang');
-// Route::get('ctsp', function () {
-//     return view('pages.ctsp');
-    
-// })->name('pages.ctsp');
+
 Route::get('show', function () {
     return view('pages.show');
     
@@ -62,9 +59,7 @@ Route::get('blog', function () {
 
 
 
-// Route::get('/categories/{id}',                          [PostController::class, 'categories'])->name('client.category');
-// Route::get('/author/{id}',                              [PostController::class, 'author'])->name('client.author');
-// Route::get('/show/{id}',                                [PostController::class, 'show'])->name('client.show');
+
 
 Route::get('/login', [AuthenticationController::class, 'displayLogin'])->name('client.login');
 Route::get('/register', [AuthenticationController::class, 'displayRegister'])->name('client.register');
@@ -79,8 +74,6 @@ Route::get('/forgot-password', [AuthenticationController::class, 'showForgotPass
 // Route để xử lý việc đặt lại mật khẩu
 Route::post('/reset-password', [AuthenticationController::class, 'resetPassword'])->name('password.update');
 
-// Route::get('reset-password/{token}',                    [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-// Route::post('reset-password',                           [ResetPasswordController::class, 'reset'])->name('password.update');
 
 // Admin Auth:
 Route::prefix('admin')->name('admin.')->group(function() {
